@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lab2</title>
+</head>
+<body>
+<div>
+    <div>
+        <button onclick="doGet()">Go to LifecycleServlet</button>
+    </div>
+    <div>
+        <button onclick="doPost();">Post to LifecycleServlet</button>
+        <div class="post-response"></div>
+    </div>
+</div>
+<script>
+    const FIRSTNAME = 'Diana';
+    const LASTNAME = 'Agapkina';
+    const LIFECYCLE_SERVLET_URL = '/lab2/GoSss';
+
+    function doGet() {
+        window.location.href = `${LIFECYCLE_SERVLET_URL}?firstname=${FIRSTNAME}&lastname=${LASTNAME}`;
+    }
+
+    function doPost() {
+        fetch(`${LIFECYCLE_SERVLET_URL}?firstname=${FIRSTNAME}&lastname=${LASTNAME}`, {
+            method: 'POST'
+        }).then(response => response.text())
+        .then(responseText => {
+            const responseContainer = document.getElementsByClassName('post-response')[0];
+            if (responseContainer) {
+                responseContainer.innerText = responseText;
+            }
+        });
+    }
+</script>
+</body>
+</html>
