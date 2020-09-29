@@ -1,0 +1,16 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="Lab3">
+    <output-path>$PROJECT_DIR$/out/artifacts/Lab3</output-path>
+    <root id="archive" name="Lab3.war">
+      <element id="javaee-facet-resources" facet="Lab3/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="Lab3" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: commons-io:commons-io:2.6" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>
