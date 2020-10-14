@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="Lab4" default="tomcat-run">
+    <property file="build.properties"/>
+    <property name="war" location="${out.root}/${out.artifacts}/${project.name}/${project.name}.war"/>
+    <property name="classes" location="${source.root}/${source.main}/java"/>
+    <property name="webapp" location="${source.webapp}"/>
+    <property name="tomcat.apps-dir" location="${tomcat.location}/${tomcat.name}/${tomcat.webapps}"/>
+    <property name="index-url" value="${project.protocol}://${project.domain}:${tomcat.port}/${project.name}${project.index}"/>
+
+    <path id="tomcat.class.path">
+        <fileset dir="${tomcat.location}/${tomcat.name}/lib">
+            <include name="**/*.jar"/>
+            <include name="**/*.zip"/>
+        </fileset>
+        <pathelement location="${tomcat.location}/${tomcat.name}/bin/bootstrap.jar"/>
+        <pathelement location="${tomcat.location}/${tomcat.name}/bin/tomcat-juli.jar"/>
+    </path>
+
+
+    <target name="compile">
+        <mkdir dir="${build.root}/${build.classes}"/>
+        <mkdir dir="${out.root}/${out.artifacts}/${project.name}"/>
+        <javac srcdir="${classes}" destdir="${build.root}/${build.classes}" classpath="${lib.servlet}"/>
+    </target>
+
+    <target name="compress" depends="compile">
+        <war destFile="${war}" webxml="${webapp}/WEB-INF/web.xml">
+            <classes dir="${build.root}/${build.classes}"/>
+            <fileset dir="${webapp}" excludes="WEB-INF/web.xml"/>
+        </war>
+    </target>
+
+    <target name="clean">
+        <delete dir="${build.root}"/>
+        <delete dir="${out.root}"/>
+        <delete verbose="true" file="debug.log"/>
+    </target>
+
+    <target name="build" depends="compress"/>
+
+    <target name="rebuild" depends="clean, compress"/>
+
+    <target name="deploy" depends="rebuild">
+        <delete verbose="true" dir="${tomcat.location}/${tomcat.name}/${tomcat.webapps}/${project.name}"/>
+        <copy todir="${tomcat.apps-dir}" file="${war}"/>
+    </target>
+
+    <target name="tomcat-run" depends="deploy">
+        <java classname="org.apache.catalina.startup.Bootstrap" fork="true" classpathref="tomcat.class.path">
+            <jvmarg value="-Dcatalina.home=${tomcat.location}/${tomcat.name}"/>
+        </java>
+    </target>
+
+</project>
