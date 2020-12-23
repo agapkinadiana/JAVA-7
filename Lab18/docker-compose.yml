@@ -1,0 +1,25 @@
+version: "3"
+services:
+  mysql:
+    image: mysql
+    container_name: "mysql"
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+    ports:
+    - "3307:3306"
+  lab18:
+    image: agapkinadiana/lab18
+    build: .
+    container_name: "lab18"
+    depends_on:
+      - mysql
+    links:
+      - "mysql:mysql"
+    environment:
+      DbHost: mysql
+      DbPort: 3306
+      DbOptions: serverTimezone=UTC
+      DbUsername: root
+      DbPassword: password
+    ports:
+      - "8080:8080"

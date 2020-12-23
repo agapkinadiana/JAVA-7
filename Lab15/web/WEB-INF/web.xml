@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+
+    <context-param>
+        <param-name>mailHost</param-name>
+        <param-value>smtp.mail.ru</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>mailPort</param-name>
+        <param-value>587</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>mailHostInbox</param-name>
+        <param-value>imap.mail.ru</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>mailPortInbox</param-name>
+        <param-value>993</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>mailUsername</param-name>
+        <param-value>agapkinadiana@mail.ru</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>mailPassword</param-name>
+        <param-value>DeWWsh12</param-value>
+    </context-param>
+
+    
+    <welcome-file-list>
+        <welcome-file>/index.jsp</welcome-file>
+    </welcome-file-list>
+    
+
+    <servlet>
+        <servlet-name>Mail</servlet-name>
+        <servlet-class>servlets.EmailServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Mail</servlet-name>
+        <url-pattern>/mail</url-pattern>
+    </servlet-mapping>
+
+</web-app>

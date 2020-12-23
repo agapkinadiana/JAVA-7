@@ -1,0 +1,20 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="Lab18">
+    <output-path>$PROJECT_DIR$/out/artifacts/Lab18</output-path>
+    <root id="archive" name="Lab18.war">
+      <element id="javaee-facet-resources" facet="Lab18/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="Lab18" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: com.google.code.gson:gson:2.8.6" />
+          <element id="library" level="project" name="Maven: com.google.protobuf:protobuf-java:3.11.4" />
+          <element id="library" level="project" name="Maven: javax.servlet:javax.servlet-api:3.1.0" />
+          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:8.0.21" />
+          <element id="library" level="project" name="Maven: commons-io:commons-io:1.3.2" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>
